@@ -1,0 +1,25 @@
+
+
+CREATE TABLE #tmp (
+id INT ,
+sex VARCHAR(100),
+name VARCHAR(200),
+age int
+)
+
+INSERT INTO  #tmp VALUES (1,'MALE','MICO',24)
+INSERT INTO  #tmp VALUES (1,'MALE','BOGS',25)
+INSERT INTO  #tmp VALUES (1,'MALE','KENNETH',27)
+INSERT INTO  #tmp VALUES (2,'FEMALE','INNA',30)
+INSERT INTO  #tmp VALUES (2,'FEMALE','RANIE',25)
+INSERT INTO  #tmp VALUES (2,'FEMALE','ROSE',22)
+
+SELECT * FROM #tmp
+
+
+SELECT case when grouping(id) = 0
+			THEN cast(id as varchar(50)) else  '' end,
+	   case when GROUPING(name) = 0 then name else sex end,
+	   SUM(age)Age
+FROM #tmpr
+Group by grouping sets((id,sex,name),(sex))
